@@ -7,14 +7,14 @@ import os
 
 
 class GeneralLoc:
-    log_path = "/data/ssd4/ludwikat/logs"
+    log_path = "/data/ssd0/ludwikat/logs"
 
 
 class YTJumpLoc:
-    base_path = '/data/ssd4/ludwikat/datasets/jump-broadcast'  # '<path_to_download_of>/jump-broadcast'
+    base_path = '/data/ssd0/ludwikat/datasets/jump-broadcast'  # '<path_to_download_of>/jump-broadcast'
     pretrained_model = "pretrained_weights/coco_arbitrary_limbs.pth.tar"
 
-    frames_path = "/data/ssd4/ludwikat/datasets/jump/youtube_dataset/annotated_frames"  # os.path.join(base_path,
+    frames_path = "/data/ssd0/ludwikat/datasets/jump/youtube_dataset/annotated_frames"  # os.path.join(base_path,
     # 'annotated_frames')
     annotation_dir = 'keypoints'
     annotation_path = os.path.join(base_path, annotation_dir)

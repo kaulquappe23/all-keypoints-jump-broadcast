@@ -37,7 +37,7 @@ def general_eval_pipeline(
     :return:
     """
     if config is None:
-        settings = torch.load(weights_file)
+        settings = torch.load(weights_file, weights_only=False)
         config = settings["config"]
 
     if "20" in weights_file:
@@ -58,7 +58,7 @@ def general_eval_pipeline(
 
     if inference_again:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        checkpoint = torch.load(weights_file, map_location=device)
+        checkpoint = torch.load(weights_file, map_location=device, weights_only=False)
         if config is None:
             config = checkpoint["config"]
         if model_name is not None:

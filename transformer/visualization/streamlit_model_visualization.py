@@ -56,7 +56,7 @@ def streamlit_show_model_results(
 
     if "model" not in st.session_state:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        checkpoint = torch.load(weights_file, map_location=device)
+        checkpoint = torch.load(weights_file, map_location=device, weights_only=False)
         if "config" in checkpoint:
             st.session_state.config = checkpoint["config"]
         else:
@@ -99,7 +99,7 @@ def streamlit_show_model_results(
                           gridOptions=gridoptions,
                           )
 
-        selected = response['selected_rows']
+        selected = response.selected_rows
 
     bps = [bp for bp in list(st.session_state.config.BODYPART_ORDER.get_bodypart_to_keypoint_dict().keys()) if
            bp not in st.session_state.config.BODYPART_ORDER.get_adjacent_bodyparts()]
@@ -119,8 +119,8 @@ def streamlit_show_model_results(
 
     image_scale = st.sidebar.slider('Image scale:', 0.5, 5.0, 1.5)
 
-    if len(selected) > 0:
-        image_id = selected[0]['Image IDs']
+    if selected is not None and len(selected.index) > 0:
+        image_id = selected['Image IDs'].iloc[0]
 
         if style_selection == "Grid":
             indices = [idx[-1] for idx in used_bodyparts]

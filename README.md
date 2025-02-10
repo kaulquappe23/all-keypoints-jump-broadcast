@@ -37,7 +37,7 @@ To use this code, it is expected that the extracted frames are located in a subf
 
 ## Installation
 
-Install all requirements in `requirements.txt`.
+The repository is tested with Python Version 3.13. Install all requirements in `requirements.txt`.
 Before running, you need to adjust the paths in `paths.py`. You need to set the path to the downloaded dataset (`YTJumpLoc.base_path`) and a path for the logs (`GeneralLoc.log_path`), where the evaluation files and training logs will be dumped. 
 
 ## Evaluation

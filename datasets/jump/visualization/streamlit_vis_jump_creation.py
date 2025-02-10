@@ -331,8 +331,7 @@ if __name__ == "__main__":
                           width=200,
                           gridOptions=gridoptions,
                           )
-
-        selected = response['selected_rows']
+        selected = response.selected_rows
 
     bodypart_order = st.session_state.jump.bodypart_order
     bodypart_names = np.asarray(bodypart_order.names())[sorted(list(bodypart_order.get_bodypart_to_keypoint_dict().keys()))]
@@ -353,9 +352,9 @@ if __name__ == "__main__":
     circle_size = st.sidebar.slider('Circle size:', 1, 5, 2)
     thickness = st.sidebar.slider('Circle thickness:', 1, 10, 2)
 
-    if len(selected) > 0:
+    if selected is not None and len(selected.index) > 0:
 
-        image_id = selected[0]['Image IDs']
+        image_id = selected['Image IDs'].iloc[0]
         bbox_ = np.asarray(st.session_state.jump.bboxes[image_id], dtype=int)
         x1, y1, w, h = bbox_
         keypoints = st.session_state.jump.annotations[image_id]
